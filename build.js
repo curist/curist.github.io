@@ -1,14 +1,21 @@
 import shelljs from 'shelljs'
 import { writeFileSync, readFileSync } from 'fs'
+import { build as esbuild } from 'esbuild'
 import { join } from 'path'
-import glob from 'glob'
+import globLib from 'glob'
 import basename from 'basename'
 import markup from './markup.js'
 
 const { rm, mkdir, cp } = shelljs
-const { sync } = glob
+const { sync: glob } = globLib
 
 // ========== prebuild ==========
+await esbuild({
+  entryPoints: ['src/browser.js'],
+  outfile: 'dist/files/libs.js',
+  bundle: true,
+  minify: true,
+})
 rm('-rf', 'public')
 mkdir('-p', 'public')
 
@@ -25,7 +32,7 @@ const md = markdown()
     }, {})
   })
 
-const postPaths = sync('./src/posts/**/*.md')
+const postPaths = glob('./src/posts/**/*.md')
 const posts = []
 import PostTemplate from './src/components/PostTemplate.js'
 mkdir('-p', 'public/posts')
@@ -52,7 +59,7 @@ for(let post of postPaths) {
 
 
 // ========== build pages ==========
-const pages = sync('./src/pages/**/*.js')
+const pages = glob('./src/pages/**/*.js')
 
 for(let page of pages) {
   const [ fullPath ] = page.replace('./src/pages/', '').split('.')
