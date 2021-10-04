@@ -4,12 +4,15 @@
     "build": "node build.js"
   },
   "devDependencies": {
+    "autoprefixer": "^10.3.6",
     "basename": "^0.1.2",
     "esbuild": "^0.13.3",
     "esm": "^3.2.25",
     "glob": "^7.1.6",
     "markdown-it": "^11.0.0",
     "markdown-it-front-matter": "^0.2.1",
+    "postcss": "^8.3.8",
+    "postcss-nested": "^5.0.6",
     "shelljs": "^0.8.4",
     "short-hash": "^1.0.0"
   },

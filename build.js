@@ -86,10 +86,7 @@ for(let page of pages) {
 }
 
 // ========== write css ==========
-const extractedStyles = Object.entries(css.styles()).map(([k, v]) => {
-  return `.${k} {${v}}`
-}).join('\n')
-writeFileSync('public/styles.css', extractedStyles)
+writeFileSync('public/styles.css', await css.styles())
 
 // ========== postbuild ==========
 cp('-r', 'dist/files/*', 'public')
