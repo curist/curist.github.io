@@ -17,6 +17,11 @@ const PostTemplate = ({
       // href: 'https://unpkg.com/sakura.css/css/sakura.css',
       href: 'https://newcss.net/lite.css',
     }],
+    ['link', {
+      rel: 'stylesheet',
+      href: '/styles.css',
+    }],
+    ['script', { src: '/libs.js' }],
     ['title', frontMatters.title || title],
   ]],
   ['body', [

@@ -10,7 +10,8 @@
     "glob": "^7.1.6",
     "markdown-it": "^11.0.0",
     "markdown-it-front-matter": "^0.2.1",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "short-hash": "^1.0.0"
   },
   "license": "WTFPL"
 }

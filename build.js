@@ -5,6 +5,7 @@ import { join } from 'path'
 import globLib from 'glob'
 import basename from 'basename'
 import markup from './markup.js'
+import css from './src/css.js'
 
 const { rm, mkdir, cp } = shelljs
 const { sync: glob } = globLib
@@ -83,6 +84,12 @@ for(let page of pages) {
   const Page = await import(page)
   writeFileSync(outputFilePath, markup(Page.default, 0, { posts }))
 }
+
+// ========== write css ==========
+const extractedStyles = Object.entries(css.styles()).map(([k, v]) => {
+  return `.${k} {${v}}`
+}).join('\n')
+writeFileSync('public/styles.css', extractedStyles)
 
 // ========== postbuild ==========
 cp('-r', 'dist/files/*', 'public')
