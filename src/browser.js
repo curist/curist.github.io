@@ -1,3 +1,5 @@
 const now = () => Date.now()
 
-export { now }
+window.libs = {
+  now,
+}

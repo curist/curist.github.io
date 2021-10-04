@@ -1,4 +1,4 @@
-import Nav from './Nav'
+import Nav from './Nav.js'
 
 const Template = ({ title = 'a page', children }) => ['html', [
   ['head', [
@@ -13,10 +13,6 @@ const Template = ({ title = 'a page', children }) => ['html', [
       href: 'https://newcss.net/lite.css',
       // href: 'https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css',
       // href: 'https://unpkg.com/mvp.css',
-    }],
-    ['link', {
-      rel: 'stylesheet',
-      href: '/styles.css',
     }],
     ['script', { src: '/libs.js' }],
     ['title', title],

@@ -1,10 +1,4 @@
-import { css } from 'linaria'
-
-const NavStyle = css`
-  text-transform: uppercase;
-`
-
-const Nav = ['nav', { class: NavStyle }, [
+const Nav = ['nav', [
   ['a', { href: '/' }, 'home'],
   ['a', { href: '/mypage' }, 'a page'],
 ]]

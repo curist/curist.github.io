@@ -1,42 +1,23 @@
-const sh = require('shelljs')
-const fs = require('fs')
-const path = require('path')
-const glob = require('glob')
-const markup = require('./markup.js')
+import shelljs from 'shelljs'
+import { writeFileSync, readFileSync } from 'fs'
+import { join } from 'path'
+import glob from 'glob'
+import basename from 'basename'
+import markup from './markup.js'
 
-sh.rm('-rf', 'public')
-sh.mkdir('-p', 'public')
+const { rm, mkdir, cp } = shelljs
+const { sync } = glob
 
-// ========== build pages ==========
-const pages = glob.sync('./dist/pages/**/*.js')
-
-for(let page of pages) {
-  const [ fullPath ] = page.replace('./dist/pages/', '').split('.')
-  const [ fileName ] = fullPath.split('/').slice(-1)
-  const partialPath = fullPath.split('/').slice(0, -1).join('/')
-
-  const outputPath = fileName === 'index'
-    ? partialPath
-    : path.join(partialPath, fileName)
-
-  if(outputPath) {
-    sh.mkdir('-p', path.join('public', outputPath))
-  }
-
-  const outputFilePath = path.join(
-    'public', partialPath,
-    fileName === 'index' ? '' : fileName,
-    'index.html'
-  )
-
-  const Page = require(page).default
-  fs.writeFileSync(outputFilePath, markup(Page))
-}
+// ========== prebuild ==========
+rm('-rf', 'public')
+mkdir('-p', 'public')
 
 // ========== build markdown posts ==========
 let frontMatters = {}
-const md = require('markdown-it')()
-  .use(require('markdown-it-front-matter'), fm => {
+import markdown from 'markdown-it'
+import markdownFrontmatter from 'markdown-it-front-matter'
+const md = markdown()
+  .use(markdownFrontmatter, fm => {
     frontMatters = fm.split('\n').reduce((acc, fm) => {
       const [ key, value ] = fm.split(': ')
       acc[key] = value
@@ -44,30 +25,59 @@ const md = require('markdown-it')()
     }, {})
   })
 
-const posts = glob.sync('./src/posts/**/*.md')
-const PostTemplate = require('./src/components/PostTemplate').default
-sh.mkdir('-p', 'public/posts')
-for(let post of posts) {
-  const body = md.render(fs.readFileSync(post, 'utf-8'))
+const postPaths = sync('./src/posts/**/*.md')
+const posts = []
+import PostTemplate from './src/components/PostTemplate.js'
+mkdir('-p', 'public/posts')
+for(let post of postPaths) {
+  const body = md.render(readFileSync(post, 'utf-8'))
   if(!frontMatters.createdAt) {
     console.log('bad post: ' + post)
     continue
   }
   const content = markup([PostTemplate, { frontMatters }, [ body ]])
-  const outputPath = path.join(
-    'public/posts',
-    frontMatters.createdAt,
-    frontMatters.url
-  )
-  sh.mkdir('-p', outputPath)
+  const postFileName = frontMatters.url || basename(post)
+  const url = join('posts', frontMatters.createdAt, postFileName)
+  const outputPath = join('public', url)
+  mkdir('-p', outputPath)
   const outputFilePath = `${outputPath}/index.html`
-  fs.writeFileSync(outputFilePath, content)
+  writeFileSync(outputFilePath, content)
+  posts.push({
+    title: frontMatters.title,
+    createdAt: frontMatters.createdAt,
+    postFileName,
+    url,
+  })
 }
 
 
-let result = md.render('---\ntitle: this is a title\ndesc: nope\n---\n# Heading\n---\nsome text');
-// console.log(result)
+// ========== build pages ==========
+const pages = sync('./src/pages/**/*.js')
 
-sh.cp('-r', 'dist/files/*', 'public')
-sh.cp('-r', 'assets/*', 'public')
-sh.rm('-rf', 'dist')
+for(let page of pages) {
+  const [ fullPath ] = page.replace('./src/pages/', '').split('.')
+  const [ fileName ] = fullPath.split('/').slice(-1)
+  const partialPath = fullPath.split('/').slice(0, -1).join('/')
+
+  const outputPath = fileName === 'index'
+    ? partialPath
+    : join(partialPath, fileName)
+
+  if(outputPath) {
+    mkdir('-p', join('public', outputPath))
+  }
+
+  const outputFilePath = join(
+    'public', partialPath,
+    fileName === 'index' ? '' : fileName,
+    'index.html'
+  )
+
+  const Page = await import(page)
+  writeFileSync(outputFilePath, markup(Page.default, 0, { posts }))
+}
+
+// ========== postbuild ==========
+cp('-r', 'dist/files/*', 'public')
+cp('-r', 'assets/*', 'public')
+rm('-rf', 'dist')

@@ -1,11 +1,11 @@
-import Template from 'src/components/Template'
+import Template from '../components/Template.js'
 
 export default () => [Template, [
   ['h1', 'My Second Page'],
   'and some content',
   ['form', {
     onload: function(e, el) {
-      console.log(el)
+      console.log(el);
       console.log('form loaded')
     },
     onsubmit: function(e, el) {

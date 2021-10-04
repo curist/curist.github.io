@@ -2,7 +2,7 @@ const repeat = (n = 0, c = '  ') => {
   return Array.from({ length: n + 1 }).join(c)
 }
 
-const randomFunctionName = () => '_' + Math.random().toString(16).slice(-6)
+const randomFunctionName = () => '__' + Math.random().toString(16).slice(-6)
 
 const isTextNode = el => {
   const type = typeof el
@@ -51,7 +51,7 @@ function markup(tags, indent = 0, context = {}) {
     return markup(tag({
       ...attrs,
       children: childrenArr,
-    }), indent, context)
+    }, context), indent, context)
   }
 
   context.fns = context.fns || {}
@@ -75,9 +75,7 @@ function markup(tags, indent = 0, context = {}) {
       const fnString = v.toString()
       const existingFnName = context.fns[fnString]
       const fnName = existingFnName || randomFunctionName()
-      if(!existingFnName) {
-        fns[fnString] = fnName
-      }
+      fns[fnString] = fnName
       if(k === 'data-onload') {
         return `onload="${fnName}(event,this.parentNode);` +
           'this.parentNode.removeChild(this)"'
@@ -91,7 +89,7 @@ function markup(tags, indent = 0, context = {}) {
   if(fnPairs.length > 0) {
     result += repeat(indent) + '<script>\n'
     fnPairs.forEach(([fnBody, fnName]) => {
-      result += repeat(indent + 1) + `var ${fnName} = ${fnBody};\n`
+      result += repeat(indent) + `var ${fnName} = ${fnBody};\n`
     })
     result += repeat(indent) + '</script>\n'
     context.fns = {
@@ -140,5 +138,5 @@ function markup(tags, indent = 0, context = {}) {
   return result
 }
 
-module.exports = markup
+export default markup
 
