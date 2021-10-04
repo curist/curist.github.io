@@ -3,23 +3,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/favicon.ico">
     <link rel="stylesheet" href="https://newcss.net/lite.css">
+    <link rel="stylesheet" href="/styles.css">
     <script src="/libs.js"></script>
     <title>a page</title>
   </head>
   <body>
-    <nav>
+    <nav class="_77432cce">
       <a href="/">home</a>
       <a href="/mypage">a page</a>
     </nav>
     <h1>Hello world!</h1>
     <script>
-    var __98e0af = (e, el) => {
+    var __d49271 = (e, el) => {
     e.preventDefault()
     const input = el.querySelector('[name=username]')
     alert(input.value)
   };
     </script>
-    <form onsubmit="__98e0af(event,this)">
+    <form onsubmit="__d49271(event,this)">
       <fieldset>
         <legend>My Form:</legend>
         <input required name="username" placeholder="Your name">
@@ -27,36 +28,36 @@
       </fieldset>
     </form>
     <script>
-    var __08a009 = ({ count }) => `The count is: ${count}`;
-    var __647ee9 = function(e, el) {
+    var __584b9f = ({ count }) => `The count is: ${count}`;
+    var __52df4a = function(e, el) {
     const count = (parseInt(el.dataset.value) || 0) + 1
     el.dataset.value = count
     el.innerHTML = 'The count is: ' + count
   };
     </script>
-    <button data-value="10" template="__08a009(event,this)" onclick="__647ee9(event,this)">The count is: 10</button>
+    <button data-value="10" template="__584b9f(event,this)" onclick="__52df4a(event,this)">The count is: 10</button>
     <div >
       some content...
       <script>
-      var __62ff3a = function(e, el) {
+      var __439d9f = function(e, el) {
         setTimeout(function() {
           const { now } = libs
           el.innerHTML = now()
         }, 2000)
       };
       </script>
-      <style onload="__62ff3a(event,this.parentNode);this.parentNode.removeChild(this)"></style>
+      <style onload="__439d9f(event,this.parentNode);this.parentNode.removeChild(this)"></style>
     </div>
     kk
     <script>
-    var __08a009 = ({ count }) => `The count is: ${count}`;
-    var __647ee9 = function(e, el) {
+    var __584b9f = ({ count }) => `The count is: ${count}`;
+    var __52df4a = function(e, el) {
     const count = (parseInt(el.dataset.value) || 0) + 1
     el.dataset.value = count
     el.innerHTML = 'The count is: ' + count
   };
     </script>
-    <button data-value="0" template="__08a009(event,this)" onclick="__647ee9(event,this)">The count is: 0</button>
+    <button data-value="0" template="__584b9f(event,this)" onclick="__52df4a(event,this)">The count is: 0</button>
     <div>
       <a href="posts/2020-05-24/first-post">First Post</a>
     </div>
