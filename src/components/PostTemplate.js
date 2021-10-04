@@ -16,9 +16,6 @@ const PostTemplate = ({
   ]],
   ['body', [
     ...children,
-    ['div', [
-      ['img', { src: '/neocities.png' }],
-    ]],
   ]],
 ]]
 

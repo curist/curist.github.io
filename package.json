@@ -2,8 +2,7 @@
   "type": "module",
   "scripts": {
     "prebuild": "esbuild src/browser.js --bundle --minify --outfile=dist/files/libs.js",
-    "build": "node build.js",
-    "publish": "npm run build && neocities push public"
+    "build": "node build.js"
   },
   "devDependencies": {
     "basename": "^0.1.2",
