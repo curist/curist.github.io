@@ -1,5 +1,8 @@
 {
   "type": "module",
+  "imports": {
+    "#src/*": "./src/*.js"
+  },
   "scripts": {
     "build": "node build.js"
   },

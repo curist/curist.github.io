@@ -1,6 +1,6 @@
-import Template from '../components/Template.js'
-import MyForm from '../components/MyForm.js'
-import Counter from '../components/Counter.js'
+import Template from '#src/components/Template'
+import MyForm from '#src/components/MyForm'
+import Counter from '#src/components/Counter'
 
 const App = (_, { posts }) => [
   Template, [

@@ -1,4 +1,4 @@
-import css from '../css.js'
+import css from '#src/css'
 
 const NavStyle = css(`
   text-transform: uppercase;
