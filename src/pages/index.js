@@ -20,6 +20,17 @@ const App = (_, { posts }) => [
     ['div', posts.map(post => ['a', {
       href: post.url,
     }, post.title])],
+    ['br'],
+    ['a', {
+      href: 'https://github.com/curist/curist.github.io',
+      style: 'display:flex;align-content:center'
+    }, [
+      ['img', {
+        src: 'https://github.com/favicon.ico',
+        alt: 'github logo',
+      }],
+      ['span', {style: 'margin-left: 10px'}, 'this repo'],
+    ]],
     ['script', `console.log('yoyo!!')`],
   ],
 ]
