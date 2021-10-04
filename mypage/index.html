@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="https://newcss.net/lite.css">
+    <script src="/libs.js"></script>
+    <title>a page</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/">home</a>
+      <a href="/mypage">a page</a>
+    </nav>
+    <h1>My Second Page</h1>
+    and some content
+    <script>
+    var __f7f63e = function(e, el) {
+      e.preventDefault()
+      const $input = el.querySelector('[name=code]')
+      const $message = el.querySelector('.message')
+      $message.innerHTML = $input.value
+
+      clearTimeout(el.dataset.timeout)
+      el.dataset.timeout = setTimeout(function() {
+        $message.innerHTML = ''
+      }, 3000)
+    };
+    </script>
+    <form onsubmit="__f7f63e(event,this)">
+      <input name="code" placeholder="code">
+      <input type="submit">
+      <div class="message"></div>
+      <script>
+      var __42c2ca = function(e, el) {
+      console.log(el);
+      console.log('form loaded')
+    };
+      </script>
+      <style onload="__42c2ca(event,this.parentNode);this.parentNode.removeChild(this)"></style>
+    </form>
+  </body>
+</html>
