@@ -6,6 +6,8 @@ everything under `assets/` will be copied to `public/`.
 
 JS libraries should be exported in `src/browser.js`, and can be accessed as `libs.*` in browser.
 
+CSS is extracted using `src/css.js` helper, and processed using `PostCSS`.
+
 # The markup
 
 Markups are in the form of either one of the expressions below
