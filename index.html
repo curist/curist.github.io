@@ -12,13 +12,13 @@
     </nav>
     <h1>Hello world!</h1>
     <script>
-    var __ecfca3 = (e, el) => {
+    var __43d8d5 = (e, el) => {
     e.preventDefault()
     const input = el.querySelector('[name=username]')
     alert(input.value)
   };
     </script>
-    <form onsubmit="__ecfca3(event,this)">
+    <form onsubmit="__43d8d5(event,this)">
       <fieldset>
         <legend>My Form:</legend>
         <input required name="username" placeholder="Your name">
@@ -26,39 +26,42 @@
       </fieldset>
     </form>
     <script>
-    var __373894 = ({ count }) => `The count is: ${count}`;
-    var __1dfd81 = function(e, el) {
+    var __f053cf = ({ count }) => `The count is: ${count}`;
+    var __dde128 = function(e, el) {
     const count = (parseInt(el.dataset.value) || 0) + 1
     el.dataset.value = count
     el.innerHTML = 'The count is: ' + count
   };
     </script>
-    <button data-value="10" template="__373894(event,this)" onclick="__1dfd81(event,this)">The count is: 10</button>
+    <button data-value="10" template="__f053cf(event,this)" onclick="__dde128(event,this)">The count is: 10</button>
     <div >
       some content...
       <script>
-      var __5327df = function(e, el) {
+      var __887a1b = function(e, el) {
         setTimeout(function() {
           const { now } = libs
           el.innerHTML = now()
         }, 2000)
       };
       </script>
-      <style onload="__5327df(event,this.parentNode);this.parentNode.removeChild(this)"></style>
+      <style onload="__887a1b(event,this.parentNode);this.parentNode.removeChild(this)"></style>
     </div>
     kk
     <script>
-    var __373894 = ({ count }) => `The count is: ${count}`;
-    var __1dfd81 = function(e, el) {
+    var __f053cf = ({ count }) => `The count is: ${count}`;
+    var __dde128 = function(e, el) {
     const count = (parseInt(el.dataset.value) || 0) + 1
     el.dataset.value = count
     el.innerHTML = 'The count is: ' + count
   };
     </script>
-    <button data-value="0" template="__373894(event,this)" onclick="__1dfd81(event,this)">The count is: 0</button>
+    <button data-value="0" template="__f053cf(event,this)" onclick="__dde128(event,this)">The count is: 0</button>
     <div>
       <a href="posts/2020-05-24/first-post">First Post</a>
     </div>
+    <a href="https://github.com/curist/curist.github.io">
+      <img href="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
+    </a>
     <script>console.log('yoyo!!')</script>
   </body>
 </html>
