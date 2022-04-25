@@ -14,13 +14,13 @@
     </nav>
     <h1>Hello world!</h1>
     <script>
-    var __4fc3eb = (e, el) => {
+    var __e30858 = (e, el) => {
     e.preventDefault()
     const input = el.querySelector('[name=username]')
     alert(input.value)
   };
     </script>
-    <form onsubmit="__4fc3eb(event,this)">
+    <form onsubmit="__e30858(event,this)">
       <fieldset>
         <legend>My Form:</legend>
         <input required name="username" placeholder="Your name">
@@ -28,36 +28,36 @@
       </fieldset>
     </form>
     <script>
-    var __6b7311 = ({ count }) => `The count is: ${count}`;
-    var __001bc1 = function(e, el) {
+    var __527f6c = ({ count }) => `The count is: ${count}`;
+    var __c910d4 = function(e, el) {
     const count = (parseInt(el.dataset.value) || 0) + 1
     el.dataset.value = count
     el.innerHTML = 'The count is: ' + count
   };
     </script>
-    <button data-value="10" template="__6b7311(event,this)" onclick="__001bc1(event,this)">The count is: 10</button>
+    <button data-value="10" template="__527f6c(event,this)" onclick="__c910d4(event,this)">The count is: 10</button>
     <div >
       some content...
       <script>
-      var __5c5b28 = function(e, el) {
+      var __1c247e = function(e, el) {
         setTimeout(function() {
           const { now } = libs
           el.innerHTML = now()
         }, 2000)
       };
       </script>
-      <style onload="__5c5b28(event,this.parentNode);this.parentNode.removeChild(this)"></style>
+      <style onload="__1c247e(event,this.parentNode);this.parentNode.removeChild(this)"></style>
     </div>
     kk
     <script>
-    var __6b7311 = ({ count }) => `The count is: ${count}`;
-    var __001bc1 = function(e, el) {
+    var __527f6c = ({ count }) => `The count is: ${count}`;
+    var __c910d4 = function(e, el) {
     const count = (parseInt(el.dataset.value) || 0) + 1
     el.dataset.value = count
     el.innerHTML = 'The count is: ' + count
   };
     </script>
-    <button data-value="0" template="__6b7311(event,this)" onclick="__001bc1(event,this)">The count is: 0</button>
+    <button data-value="0" template="__527f6c(event,this)" onclick="__c910d4(event,this)">The count is: 0</button>
     <div>
       <a href="posts/2020-05-24/first-post">First Post</a>
     </div>
